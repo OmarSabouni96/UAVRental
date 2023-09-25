@@ -87,3 +87,18 @@ For convenience, you can keep your normal user logged in on Chrome and your supe
 
 <img width="1552" alt="Screen Shot 2023-09-25 at 12 01 51 PM" src="https://github.com/OmarSabouni96/UAVRental/assets/70510356/2ce4c639-0c28-4118-8d53-3704db69e93b">
 
+<img width="1552" alt="Screen Shot 2023-09-25 at 12 02 23 PM" src="https://github.com/OmarSabouni96/UAVRental/assets/70510356/a029583a-93b0-4531-8ccf-fc5db65b485f">
+
+<img width="1552" alt="Screen Shot 2023-09-25 at 12 02 41 PM" src="https://github.com/OmarSabouni96/UAVRental/assets/70510356/fd49106c-85fd-413d-814d-8a07d333fb3b">
+
+<img width="1552" alt="Screen Shot 2023-09-25 at 12 02 55 PM" src="https://github.com/OmarSabouni96/UAVRental/assets/70510356/b7a50b59-4a0c-44f2-9d41-cc9c9954df73">
+
+<img width="1552" alt="Screen Shot 2023-09-25 at 12 03 06 PM" src="https://github.com/OmarSabouni96/UAVRental/assets/70510356/84fc1b90-41a9-4118-8493-1047c1075ac6">
+
+<img width="1552" alt="Screen Shot 2023-09-25 at 12 03 17 PM" src="https://github.com/OmarSabouni96/UAVRental/assets/70510356/dbb0bf19-2515-4b03-bcbd-07c3f9ff3e2e">
+
+<img width="1552" alt="Screen Shot 2023-09-25 at 12 03 25 PM" src="https://github.com/OmarSabouni96/UAVRental/assets/70510356/5ce37398-b386-40cf-992e-d72571ec495d">
+
+<img width="1552" alt="Screen Shot 2023-09-25 at 12 03 40 PM" src="https://github.com/OmarSabouni96/UAVRental/assets/70510356/d70908e5-468a-429c-baf7-46d8f1b4051f">
+
+<img width="1552" alt="Screen Shot 2023-09-25 at 12 03 53 PM" src="https://github.com/OmarSabouni96/UAVRental/assets/70510356/a5c9af82-799e-47b1-b6df-9696461b20d9">
