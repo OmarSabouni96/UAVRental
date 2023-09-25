@@ -84,3 +84,6 @@ To run tests for the application, you can use the following command:
       $ python manage.py createsuperuser
 
 For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
+
+<img width="1552" alt="Screen Shot 2023-09-25 at 12 01 51 PM" src="https://github.com/OmarSabouni96/UAVRental/assets/70510356/2ce4c639-0c28-4118-8d53-3704db69e93b">
+
