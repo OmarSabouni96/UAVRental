@@ -1,0 +1,180 @@
+<!-- uav_list_api.html -->
+{% extends "base.html" %}
+{% block content %}
+
+<br/>
+<h2>UAV List (from API)</h2>
+
+{% if request.user.is_authenticated %}
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Brand</th>
+      <th scope="col">Model</th>
+      <th scope="col">Weight</th>
+      <th scope="col">Category</th>
+      <th scope="col">Delete</th>
+      <th scope="col">Update</th>
+
+      <!-- Add other table headers as needed -->
+    </tr>
+  </thead>
+  <tbody id="uav-list">
+    <!-- UAV data will be inserted here using JavaScript -->
+  </tbody>
+</table>
+
+<a href="{% url 'uav_create_api' %}" class="btn btn-secondary btn-lg">Add NEW UAV</a>
+{% else %}
+<h2>You need to <a href="{% url 'account_login' %}">log in</a> to add UAV.</h2>
+{% endif %}
+
+<script>
+  const csrfToken = "{{ csrf_token }}";
+
+  // Fetch data from the API and create the table rows
+  function fetchDataAndCreateTable() {
+    fetch("http://127.0.0.1:8000/api/uavlists/")
+      .then((response) => response.json())
+      .then((data) => {
+        const uavList = document.getElementById("uav-list");
+
+        data.forEach((uav) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${uav.brand}</td>
+            <td>${uav.model}</td>
+            <td>${uav.weight}</td>
+            <td>${uav.category}</td>
+            <td><button class="btn btn-danger delete-uav" data-uav-id="${uav.id}">Delete</button></td>
+            <td><button class="btn btn-primary update-uav" data-uav-id="${uav.id}">Update</button></td>
+
+            <!-- Add other table cells as needed -->
+          `;
+          uavList.appendChild(row);
+        });
+
+        // Attach click event listeners to delete buttons
+        const deleteButtons = document.querySelectorAll(".delete-uav");
+        deleteButtons.forEach((button) => {
+          button.addEventListener("click", handleDeleteClick);
+        });
+
+        // Attach click event listeners to update buttons
+        const updateButtons = document.querySelectorAll(".update-uav");
+        updateButtons.forEach((button) => {
+          button.addEventListener("click", handleUpdateClick);
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+
+  }
+
+  function handleDeleteClick(event) {
+    const uavId = event.target.getAttribute("data-uav-id");
+  
+    // Confirm with the user before deleting
+    if (confirm("Are you sure you want to delete this UAV?")) {
+      // Create headers with the CSRF token
+      const headers = new Headers({
+        "X-CSRFToken": csrfToken, // Use the csrfToken variable from the template
+        "Content-Type": "application/json",
+      });
+  
+      // Send a DELETE request to the API endpoint for deletion
+      fetch(`http://127.0.0.1:8000/api/uavlists/${uavId}/delete_uav/`, {
+        method: "DELETE",
+        headers: headers, // Include the headers with the CSRF token
+      })
+        .then((response) => {
+          if (response.status === 204) {
+            // Successful deletion, remove the row from the table
+            event.target.closest("tr").remove();
+          } else {
+            console.error("Error deleting UAV:", response.status);
+          }
+        })
+        .catch((error) => {
+          console.error("Error deleting UAV:", error);
+        });
+    }
+  }
+
+  function handleUpdateClick(event) {
+    const uavId = event.target.getAttribute("data-uav-id");
+  
+    // Fetch the UAV data for the selected ID
+    fetch(`http://127.0.0.1:8000/api/uavlists/${uavId}/`)
+      .then((response) => response.json())
+      .then((uav) => {
+        // Create a form for updating the UAV data
+        const updateForm = document.createElement("form");
+        updateForm.innerHTML = `
+          <div class="form-group">
+            <label for="update-brand">Brand:</label>
+            <input type="text" class="form-control" id="update-brand" name="brand" value="${uav.brand}">
+          </div>
+          <div class="form-group">
+            <label for="update-model">Model:</label>
+            <input type="text" class="form-control" id="update-model" name="model" value="${uav.model}">
+          </div>
+          <div class="form-group">
+            <label for="update-weight">Weight:</label>
+            <input type="number" class="form-control" id="update-weight" name="weight" value="${uav.weight}">
+          </div>
+          <br/>
+          <button type="submit" class="btn btn-primary">Save</button>
+        `;
+  
+        // Handle form submission
+        updateForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const updatedUavData = {
+            brand: document.getElementById("update-brand").value,
+            model: document.getElementById("update-model").value,
+            weight: document.getElementById("update-weight").value,
+          };
+  
+          // Send a PUT request to update the UAV data
+          fetch(`http://127.0.0.1:8000/api/uavlists/${uavId}/`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRFToken": csrfToken, // Include the CSRF token
+            },
+            body: JSON.stringify(updatedUavData),
+          })
+            .then((response) => {
+              if (response.status === 200) {
+                // Successful update, reload the page to see the changes
+                location.reload();
+              } else {
+                console.error("Error updating UAV:", response.status);
+              }
+            })
+            .catch((error) => {
+              console.error("Error updating UAV:", error);
+            });
+        });
+  
+        // Replace the table cell content with the update form
+        const tableCell = event.target.closest("td");
+        tableCell.innerHTML = "";
+        tableCell.appendChild(updateForm);
+      })
+      .catch((error) => {
+        console.error("Error fetching UAV data:", error);
+      });
+  }
+  
+
+  
+  // Initial fetch and table creation
+  fetchDataAndCreateTable();
+  
+</script>
+
+{% endblock %}

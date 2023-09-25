@@ -1,0 +1,66 @@
+<!-- uav_list.html -->
+{% extends "base.html" %}
+{% block content %}
+
+  <br/>
+  <br/>
+
+  <h2>UAV List</h2>
+
+
+  <table class="table table-hover" style="margin:5px border:solid ">
+    <thead>
+      <tr>
+        {% comment %} <th scope="col">#</th> {% endcomment %}
+        <th scope="col">Brand</th>
+        <th scope="col">Model</th>
+        <th scope="col">Weight</th>
+        <th scope="col">Category</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Rent</th>
+        <th scope="col">View Records</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for uav in uavs %}
+
+      <tr>
+        <td>{{ uav.brand }}</td>
+        <td>{{ uav.model }}</td>
+        <td>{{ uav.weight }}</td>
+        <td>{{ uav.category }}</td>
+        
+        {% if request.user.is_authenticated %}
+
+        <td> <a href="{% url 'uav_update' uav.id %}" class="btn btn-outline-secondary" >Update</a> </td>
+        <td> <a href="{% url 'uav_delete' uav.id %}" class="btn btn-outline-secondary" >Delete</a> </td>
+        <td> <a href="{% url 'create_rental' uav.id %}" class="btn btn-outline-secondary" >Rent</a> </td>
+        <td> <a href="{% url 'rental_list' uav.id %}" class="btn btn-outline-secondary" >View</a> </td>
+        {% else %}
+        <td> <a href="{% url 'account_login'  %}" class="btn btn-outline-secondary" >Sign In</a> </td>
+        <td> <a href="{% url 'account_login'  %}" class="btn btn-outline-secondary" >Sign In</a> </td>
+        <td> <a href="{% url 'account_login'  %}" class="btn btn-outline-secondary" >Sign In</a> </td>
+        <td> <a href="{% url 'account_login'  %}" class="btn btn-outline-secondary" >Sign In</a> </td>
+
+        {% endif %}
+
+
+
+      </tr>
+      {% endfor %}
+
+
+    </tbody>
+  </table>
+
+  {% if request.user.is_authenticated %}
+    <a href="{% url 'uav_create' %}"  class="btn btn-secondary btn-lg" >Add NEW UAV</a>
+  {% else %}
+  <h2>You need to <a href="{% url 'account_login' %}">log in</a> to add UAV.</h2>
+
+  {% endif %}
+
+
+{% endblock %}

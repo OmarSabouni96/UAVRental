@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+<br/>
+<br/>
+
+<h2>Profile of {{ user.username }}</h2>
+
+<!-- Display user information here -->
+
+<h3>Your Rentals</h3>
+
+{% if user.is_authenticated %}
+  {% if rentals_user %}
+    <table class="table table-hover" style="margin: 5px; border: solid;">
+      <thead>
+        <tr>
+          <th scope="col">UAV</th>
+          <th scope="col">Rental Start Date</th>
+          <th scope="col">Rental End Date</th>
+          <th scope="col">Update</th>
+          <th scope="col">Delete</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for rental in rentals_user %}
+        <tr>
+          <td>{{ rental.uav }}</td>
+          <td>{{ rental.rental_start_date }}</td>
+          <td>{{ rental.rental_end_date }}</td>
+          <td>   <a href="{% url 'update_rental' rental.id %}" class="btn btn-outline-secondary">Update</a></td>
+          <td> <a href="{% url 'delete_rental' rental.id %}" class="btn btn-outline-secondary" >Delete</a> </td>
+
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>You have no rental records.</p>
+  {% endif %}
+{% else %}
+  <p>You need to <a href="{% url 'account_login' %}">log in</a> to view your rentals.</p>
+{% endif %}
+
+{% endblock %}

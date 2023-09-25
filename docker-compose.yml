@@ -1,0 +1,21 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:11.6
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+  web:
+    restart: always
+    environment:
+      - DJANGO_SECRET_KEY=local
+    build: ./
+    command: >
+      bash -c "python ./manage.py migrate &&
+               gunicorn  --bind :8000 --workers 2 uavrental.wsgi:application"
+    volumes:
+      - ./:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+  

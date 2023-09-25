@@ -1,0 +1,20 @@
+<!-- uav_form.html -->
+{% extends "base.html" %} 
+{% block content %}
+<br />
+<br />
+<br />
+
+<div id="feedback-form">
+  <h2 class="header">Add UAV</h2>
+  <div>
+    <form method="post">
+      {% csrf_token %} {{ form.as_p }}
+
+      <button type="submit" class="btn btn-outline-primary">Save</button>
+      <a href="{% url 'uav_list' %}" class="btn btn-outline-secondary">Back</a>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

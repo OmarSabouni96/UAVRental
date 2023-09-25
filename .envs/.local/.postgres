@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=uavrental
+POSTGRES_USER=ScweSTJEGJhxtLtwuuDfZdhGhWXvCYKG
+POSTGRES_PASSWORD=GdXfVCDo9PWjByJD2xYqQyBurz8gWxUFEgjtoxAg7eRcMtqjv51sBf5olaQOG5Ki

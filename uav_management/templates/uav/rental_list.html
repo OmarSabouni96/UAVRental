@@ -1,0 +1,49 @@
+<!-- rental_list.html -->
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+
+<br/>
+<br/>
+
+<h2>UAV Rental Records</h2>
+
+<!-- Add the search form -->
+<form method="GET" class="form-inline">
+  <div class="form-group mb-2">
+    <label for="search-username" class="mr-2">Search by User:</label>
+    <input type="text" class="form-control" id="search-username" name="username" placeholder="Enter username">
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Search</button>
+</form>
+
+
+{% if rentals %}
+<table class="table table-hover" style="margin:5px border:solid ">
+  <thead>
+    <tr>
+      <th scope="col">User Name</th>
+      <th scope="col">Rental Start Date</th>
+      <th scope="col">Rental End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for rental in rentals %}
+    <tr>
+      <td><strong>{{ rental.user.username }}</strong></td>
+      <td>{{ rental.rental_start_date }}</td>
+      <td>{{ rental.rental_end_date }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+  <br/>
+  <h6>- No rental records found.</h6>
+{% endif %}
+
+<a href="{% url 'uav_list' %}" class="btn btn-outline-secondary">Back</a>
+{% endblock %}

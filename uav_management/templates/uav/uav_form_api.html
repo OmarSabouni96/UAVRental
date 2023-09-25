@@ -1,0 +1,64 @@
+<!-- uav_api_form.html -->
+{% extends "base.html" %}
+{% block content %}
+
+<br />
+<br />
+<br />
+
+<div id="api-feedback-form">
+  <h2 class="header">Add UAV via API</h2>
+  <div>
+    <form id="api-uav-form">
+      {% csrf_token %}
+
+      <!-- Include the input fields you need for your API request -->
+      <div class="form-group">
+        <label for="brand">Brand:</label>
+        <input type="text" class="form-control" id="brand" name="brand">
+      </div>
+      <div class="form-group">
+        <label for="model">Model:</label>
+        <input type="text" class="form-control" id="model" name="model">
+      </div>
+      <div class="form-group">
+        <label for="weight">Weight:</label>
+        <input type="number" class="form-control" id="weight" name="weight">
+      </div>
+
+      <br/>
+
+      <button type="submit" class="btn btn-outline-primary">Save</button>
+      <a href="{% url 'uav_list_api' %}" class="btn btn-outline-secondary">Back</a>
+    </form>
+  </div>
+</div>
+
+<script>
+// Function to handle form submission
+document.getElementById("api-uav-form").addEventListener("submit", function(event) {
+  event.preventDefault();
+  const formData = new FormData(this);
+
+  // POST the data to the API endpoint
+  fetch("http://127.0.0.1:8000/api/uavlists/", {
+    method: "POST",
+    body: formData,
+  })
+  .then((response) => response.json())
+  .then((uav) => {
+    // Handle the API response as needed (e.g., show a success message)
+    console.log("UAV added via API:", uav);
+
+    // Redirect to the uav_list_api.html page
+    window.location.href = "{% url 'uav_list_api' %}";
+  })
+  .catch((error) => {
+    console.error("Error adding UAV via API:", error);
+  });
+});
+
+</script>
+
+
+{% endblock %}
