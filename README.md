@@ -80,7 +80,7 @@ Install dependencies:
 - pip install -r requirements.txt
   
 Set up the database:
-- python manage.py migrate
+- python3 manage.py migrate
   
 Start the development server:
 - python manage.py runserver
