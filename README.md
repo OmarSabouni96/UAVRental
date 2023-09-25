@@ -102,3 +102,6 @@ For convenience, you can keep your normal user logged in on Chrome and your supe
 <img width="1552" alt="Screen Shot 2023-09-25 at 12 03 40 PM" src="https://github.com/OmarSabouni96/UAVRental/assets/70510356/d70908e5-468a-429c-baf7-46d8f1b4051f">
 
 <img width="1552" alt="Screen Shot 2023-09-25 at 12 03 53 PM" src="https://github.com/OmarSabouni96/UAVRental/assets/70510356/a5c9af82-799e-47b1-b6df-9696461b20d9">
+
+<img width="1552" alt="Screen Shot 2023-09-25 at 12 07 48 PM" src="https://github.com/OmarSabouni96/UAVRental/assets/70510356/f4aa8a35-f2bc-4313-9e32-092b336e5807">
+
