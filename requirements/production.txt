@@ -3,7 +3,7 @@
 -r base.txt
 
 gunicorn==21.2.0  # https://github.com/benoitc/gunicorn
-psycopg2-binary==2.9.4
+psycopg2-binary==2.9.7
 
 # Django
 # ------------------------------------------------------------------------------
