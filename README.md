@@ -75,6 +75,15 @@ To run tests for the application, you can use the following command:
 
 ## Basic Commands
 
+## Setup
+Install dependencies:
+- pip install -r requirements.txt
+Set up the database:
+- python manage.py migrate
+Start the development server:
+- python manage.py runserver
+
+
 ### Setting Up Your Users
 
 - To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
