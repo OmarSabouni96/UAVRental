@@ -78,8 +78,10 @@ To run tests for the application, you can use the following command:
 ## Setup
 Install dependencies:
 - pip install -r requirements.txt
+  
 Set up the database:
 - python manage.py migrate
+  
 Start the development server:
 - python manage.py runserver
 
