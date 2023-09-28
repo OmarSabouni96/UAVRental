@@ -22,7 +22,7 @@ drf-spectacular==0.26.4  # https://github.com/tfranzel/drf-spectacular
 
 
 gunicorn==21.2.0  # https://github.com/benoitc/gunicorn
-psycopg2-binary==2.9.7
+psycopg2-binary==2.9.8
 
 # Django
 # ------------------------------------------------------------------------------
